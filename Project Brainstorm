@@ -2,4 +2,6 @@ Idea 1: Having a music platform that retrieves data from Spotify and weather app
 to the weather of the day. The music list could be an already existening playlist from spotify or a list that will be formed by our algorithm.
 For example, if the weather is sunny, it'll play a song from a summertime playlist curated by spotify.
 
-Idea 2: Having a podcast platform that gets data from some podcast streaming company and location based services. This API will recommend podcasts in relation to the location the user is currently in. For example, if the user is at the Grand. Canyon, the API could recommond a podcast about its history or current event.
+Idea 2: Having a podcast platform that gets data from some podcast streaming company and location based services. This API will recommend podcasts 
+in relation to the location the user is currently in. For example, if the user is at the Grand. Canyon, the API could recommond a podcast about its 
+history or current event.
