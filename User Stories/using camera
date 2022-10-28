@@ -1,0 +1,5 @@
+As a logged in user, when I see a star in the nightsky,
+I want to know what's happening there by just openning the app and focus on the star in my camera. 
+After a short period of loading, there should be some tags poped out with information about the star.
+The tags should include the information such as the name, the temperature of the star right now, its distance to th earth etc.
+If the identification goes wrong, a tag with message "Failed identification, please try again" will show up.
