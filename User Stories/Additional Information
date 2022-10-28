@@ -1,0 +1,5 @@
+As a logged in user, I would like the system to provide information about the asterism identified. For example the closer picture of it or the name 
+of each stars.
+
+Once the user has uploaded the picture, the system will try to identify stars. In addition to that, it will also provide it's additional 
+information other than its name.
