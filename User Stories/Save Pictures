@@ -1,0 +1,3 @@
+As an user, I want the system to have the ability to save pictures that I have uploaded in the past. If it does not allow me to save pictures,
+the system has to show why. The reasons of failure can be user not logged into his/her account or the maximum number of saved photos exceeded. If user
+did not logged into his/her account. It should be referenced to account user story.
