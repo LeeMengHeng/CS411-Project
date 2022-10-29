@@ -4,3 +4,5 @@ to take a picture and upload it to the system and have the system identify it fo
 
 Once the user has finished choosing the date, they will be able to upload a picture of the sky. The system will determine which asterism 
 it is and provide necessarly information about that specific asterism. 
+
+If the star is not associated with an asterism, there will be a message that states that the chosen star is not a part of a constellation. I would still like general information about the star.

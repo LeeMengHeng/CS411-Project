@@ -1,3 +1,7 @@
 As a logged in user. I want to choose my current location so that it can match up to specific asterism.
 
-Once the user logs in with either Facebook or Twitter, they will be able to choose their current location.
+Once the user logs in with either Facebook or Twitter, they will be able to choose their current location. There will be a message that pops up that asks if the user would like to share their location with the system. If the user says yes, then the system will use the current location of the user. If they say no, then the system will not use the users location when they take pictures. 
+
+When a photo is taken, it should include the location it was taken at
+
+

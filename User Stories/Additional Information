@@ -2,4 +2,6 @@ As a logged in user, I would like the system to provide information about the as
 of each stars.
 
 Once the user has uploaded the picture, the system will try to identify stars. In addition to that, it will also provide it's additional 
-information other than its name.
+information other than its name. I would want the system to illustrate what a certain constellation looks like in the description, and what other stars make up the constellation.
+
+

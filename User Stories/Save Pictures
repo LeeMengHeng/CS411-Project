@@ -5,3 +5,5 @@ did not logged into his/her account. It should be redirect to log in page.
 Once the asterism of the picture has been identified, the user will be asked if they want to save this picture or not. If the user click yes, 
 then picture will be saved under his/her account. However, if the number of picture saved exceed the maximum amount, then this process will be rejected,
 and error message will pop up notying the user. On the other hand, if the user click no, then it will proceed to next step.
+
+When saved these pictures should go into an album specifically for the system. This allows for a more organized and streamline process.
