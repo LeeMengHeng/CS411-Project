@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  frontend:
+    container_name: client
+    image: react
+    build: ./client
+    volumes:
+      - .:/workspace:cached
+    tty: true        # docker run -t
+    stdin_open: true # docker run -i
+    links:
+      - backend
+    command: /bin/sh -c "while sleep 1000; do :; done"
+  backend:
+    container_name: server
+    image: flask
+    build: ./server
+    volumes:
+      - .:/workspace:cached
+    tty: true        # docker run -t
+    stdin_open: true # docker run -i  
+    command: /bin/sh -c "while sleep 1000; do :; done"
