@@ -3,13 +3,13 @@ import axios from "axios";
 export default class StarsService {
     // static uri = "https://api.nasa.gov/planetary/apod?api_key=g0T68PtLmfDBZ0vTfBfJDpT2PV7IVIWF72gvLoh7/"
     // key = "HJF2-1C1B-SFA1-7CAR"
-    url = "https://jsonplaceholder.typicode.com/todos/"
+    url = "https://images-api.nasa.gov/search?"
 
     getStar = async (id) => {
-        let uri = this.url + id
+        let uri = this.url + `q=${id}&media_type=image`
         let response = await axios.get(uri)
-        console.log(response.data)
         let data = response.data
-        return data
+        let object = data.collection.items[0].links[0].href
+        return object
     }
 }
