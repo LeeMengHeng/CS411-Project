@@ -9,7 +9,12 @@ export default class StarsService {
         let uri = this.url + `q=${id}&media_type=image`
         let response = await axios.get(uri)
         let data = response.data
-        let object = data.collection.items[0].links[0].href
+        let object = {
+            title: data.collection.items[0].data[0].title,
+            image: data.collection.items[0].links[0].href,
+            description: data.collection.items[0].data[0].description_508,
+        }
+        
         return object
     }
 }
