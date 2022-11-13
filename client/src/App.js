@@ -4,18 +4,20 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import background from './img/background.png'
 
 function App(){
-  // state={
-  //   keyword: ''
+  // const state = {
+  //   input: ''
   // }
   const [input, setName] = useState("")
   const navigate = useNavigate()
   const handleClick = (event) => {
-    // this.setState({[e.target.value]:e.target.value})
+    // this.setState({input:{input}})
     event.preventDefault()
     navigate('/search', {input: input})
     console.log({input})
+    // console.log('string: ', state.input)
     alert(`https://images-api.nasa.gov/search?q=${input}`)
   }
+  
   // backgroundImage: `url(${background})`
   return (
     <div>
@@ -41,9 +43,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 export default App
 
-function Search({route}){
+function Search({route, navigation}){
   const [data, setData] = useState([])
   const {input} = route.params 
+  console.log({data})
+  console.log('input: ', {input})
   useEffect(() => {
     fetch(`https://images-api.nasa.gov/search?q=${input}&media_type=image`)
       .then(res => res.json())
@@ -55,8 +59,8 @@ function Search({route}){
 
   return (
     <div>
-      <h1 style = {{color: 'white'}}>{input}</h1>
-      <img src={data.data}></img>
+      <h1 style = {{color: 'white'}}>hi</h1>
+      <img src={data.collection.items[0].href}></img>
     </div>
     // <div className="App" style = {{position: 'absolute', top: '100px'}}>
     //   <h1>{data.title}</h1>
