@@ -1,4 +1,4 @@
-import { Component } from "react";
+import {Component} from "react";
 
 import StarsService from "../services/starsService";
 
@@ -25,13 +25,19 @@ class FormComponent extends Component {
     render() {
         return (
             <div id="div">
-                <h1>Enter the Name of a Constellation:</h1>
-                <input type="text" id="input"/> 
-                <button onClick={this.getStar}>Submit</button>
-
-                <h3 id="title"></h3>
-                <img id="image"/>
-                <p id="description"></p>
+                <div style={{height: 400}}>
+                    <view style={{position: 'absolute', top: 300, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
+                        <input type="text" id="input" style={{borderRadius: '50px', border: 'solid', borderColor: 'white', height: '30px', width: '300px', textAlign: 'center', background: 'none', color: 'white'}} placeholder='start exploring here...'/> 
+                        <div>
+                            <button className='explore' onClick={this.getStar} style={{marginTop: 10, height: '40px', width: '100px', borderRadius: '50px', border: 'none', fontSize: '17px', fontFamily: 'revert', color: '#02004C'}}>Explore</button>
+                        </div>
+                    </view>
+                </div>
+                <div>
+                    <h3 id="title" style={{color: 'white'}}></h3>
+                    <img id="image"/>
+                    <p id="description" style={{color: 'white'}}></p>
+                </div>
             </div>
         )
     }
