@@ -26,3 +26,9 @@ code {
   transition: color 0.3s;
 }
 
+.user:hover {
+  background-color: black;
+  transition: background-color 0.3s;
+  color: white !important;
+  transition: color 0.3s;
+}
