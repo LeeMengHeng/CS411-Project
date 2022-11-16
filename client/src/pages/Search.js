@@ -17,8 +17,8 @@ function Search(){
 
   if (data) {
     return (
-      <div style={{display: "flex",justifyContent:"center"}}>
-        <div style={{color: "white", alignItems:'center'}}>
+      <div style={{textAlign:"center"}}>
+        <div style={{color: "white"}}>
           <h1>{data.collection.items[0].data[0].title}</h1>
           <img src={data.collection.items[0].links[0].href}/>
           <p>Description: {data.collection.items[0].data[0].description_508}</p>
