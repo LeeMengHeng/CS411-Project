@@ -15,7 +15,7 @@ function Login(){
             <div>
                 <input placeholder="password" style = {{marginBottom: 20, borderRadius: '50px', border: 'solid', borderColor: 'white', height: '30px', width: '300px', textAlign: 'center', background: 'none', color: 'white'}}></input>
             </div>
-            <button id="userSubmit" onClick={handleClick} style = {{height: '40px', width: '100px', borderRadius: '50px', border: 'none', fontSize: '17px', fontFamily: 'revert', color: '#02004C'}}>login</button>
+            <button className='user' id="userSubmit" onClick={handleClick} style = {{height: '40px', width: '100px', borderRadius: '50px', border: 'none', fontSize: '17px', fontFamily: 'revert', color: '#02004C'}}>login</button>
         </div>
     )
 }
