@@ -23,7 +23,12 @@ app = Flask(__name__)
 def search(keyword):
     if keyword != None:
         if request.method == "GET":
-            return requests.get(f"{url}?q={keyword}&media_type=image").json()
+            data = requests.get(f"{url}?q={keyword}&media_type=image").json()
+            return {
+                "title": data.collection.items[0].data[0].title,
+                "image": data.collection.items[0].links[0].href,
+                "description": data.collection.items[0].data[0].description_508
+            }
     else: 
         if request.method == "GET":
             return dumps(collection.find())
