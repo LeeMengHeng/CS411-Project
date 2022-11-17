@@ -1,14 +1,29 @@
 from flask import Flask, request
+from dotenv import load_dotenv
+import os
+import pymongo
+from bson.json_util import dumps
+
+
 import requests
 
 url = "https://images-api.nasa.gov/search"
 
-app = Flask(__name__)
+ATLAS_URI = os.environ.get("ATLAS_URI")
+client = pymongo.MongoClient(ATLAS_URI)
+db = client.get_database("stars")
+collection = db.get_collection("search")
 
-@app.route('/search/<keyword>')
+
+app = Flask(__name__)
+app.run(debug=True)
+
+@app.route('/search/', defaults={'keyword': None}, methods=['GET'])
+@app.route('/search/<keyword>', methods=['GET'])
 def search(keyword):
-    if request.method == "GET":
-        return requests.get(f"{url}?q={keyword}&media_type=image").json()
-    
-if __name__ == "__main__":
-    app.run(debug=True)
+    if keyword != None:
+        if request.method == "GET":
+            return requests.get(f"{url}?q={keyword}&media_type=image").json()
+    else: 
+        if request.method == "GET":
+            return dumps(collection.find())
