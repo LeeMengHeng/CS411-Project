@@ -1,4 +1,3 @@
-import json
 from flask import Flask, request
 from dotenv import load_dotenv
 import os
@@ -12,7 +11,7 @@ url = "https://images-api.nasa.gov/search"
 
 ATLAS_URI = os.environ.get("ATLAS_URI")
 client = pymongo.MongoClient(ATLAS_URI)
-db = client.get_database("stars")
+db = client.get_database("star")
 collection = db.get_collection("search")
 
 
@@ -25,9 +24,9 @@ def search(keyword):
         if request.method == "GET":
             data = requests.get(f"{url}?q={keyword}&media_type=image").json()
             return {
-                "title": data.collection.items[0].data[0].title,
-                "image": data.collection.items[0].links[0].href,
-                "description": data.collection.items[0].data[0].description_508
+                "title": data['collection']['items'][0]["data"][0]["title"],
+                "image": data['collection']['items'][0]["links"][0]["href"],
+                "description": data['collection']['items'][0]["data"][0]["description_508"]
             }
     else: 
         if request.method == "GET":
@@ -36,12 +35,14 @@ def search(keyword):
             try:
                 object = request.get_json()
                 inserted_id = collection.insert_one({
-                    "title": object["description"] if object["description"] else "haha",
+                    "title": object["title"],
                     "description": object["description"],
                     "href": object["href"]
                 }).inserted_id
 
                 return { "inserted_id": str(inserted_id) }
+            except KeyError:
+                return 400, "BAD_REQUEST"
             except:
                 return "Failed to insert object into database."
         
