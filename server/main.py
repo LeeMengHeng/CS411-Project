@@ -1,3 +1,4 @@
+import json
 from flask import Flask, request
 from dotenv import load_dotenv
 import os
@@ -16,9 +17,8 @@ collection = db.get_collection("search")
 
 
 app = Flask(__name__)
-app.run(debug=True)
 
-@app.route('/search/', defaults={'keyword': None}, methods=['GET'])
+@app.route('/search/', defaults={'keyword': None}, methods=['GET', 'POST'])
 @app.route('/search/<keyword>', methods=['GET'])
 def search(keyword):
     if keyword != None:
@@ -27,3 +27,19 @@ def search(keyword):
     else: 
         if request.method == "GET":
             return dumps(collection.find())
+        elif request.method == "POST":
+            try:
+                object = request.get_json()
+                inserted_id = collection.insert_one({
+                    "title": object["description"] if object["description"] else "haha",
+                    "description": object["description"],
+                    "href": object["href"]
+                }).inserted_id
+
+                return { "inserted_id": str(inserted_id) }
+            except:
+                return "Failed to insert object into database."
+        
+            
+if __name__ == "__main__":
+    app.run(debug=True)
