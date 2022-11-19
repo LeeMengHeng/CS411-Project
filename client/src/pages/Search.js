@@ -8,7 +8,7 @@ function Search(){
   const {input} = params
 
   useEffect(() => {
-    fetch(`https://images-api.nasa.gov/search?q=${input}&media_type=image`)
+    fetch(`http://localhost:5000/search/${input}`)
       .then(res => res.json())
       .then(data => { 
         setData(data)
@@ -19,9 +19,9 @@ function Search(){
     return (
       <div style={{textAlign:"center"}}>
         <div style={{color: "white"}}>
-          <h1>{data.collection.items[0].data[0].title}</h1>
-          <img src={data.collection.items[0].links[0].href}/>
-          <p>Description: {data.collection.items[0].data[0].description_508}</p>
+          <h1>{data.title}</h1>
+          <img src={data.href}/>
+          <p>Description: {data.description}</p>
         </div>
       </div>
     )

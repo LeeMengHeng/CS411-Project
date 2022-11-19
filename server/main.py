@@ -1,11 +1,9 @@
-from flask import Flask, request
-from dotenv import load_dotenv
+from flask import Flask, request, make_response
+from bson.json_util import dumps
+import requests
 import os
 import pymongo
-from bson.json_util import dumps
 
-
-import requests
 
 url = "https://images-api.nasa.gov/search"
 
@@ -20,31 +18,53 @@ app = Flask(__name__)
 @app.route('/search/', defaults={'keyword': None}, methods=['GET', 'POST'])
 @app.route('/search/<keyword>', methods=['GET'])
 def search(keyword):
+    response = make_response()
+    response.access_control_allow_origin = "http://localhost:3000"
+    response.content_type = "application/json"
+
     if keyword != None:
         if request.method == "GET":
             data = requests.get(f"{url}?q={keyword}&media_type=image").json()
-            return {
-                "title": data['collection']['items'][0]["data"][0]["title"],
-                "image": data['collection']['items'][0]["links"][0]["href"],
-                "description": data['collection']['items'][0]["data"][0]["description_508"]
-            }
+            response.status_code = 200
+            response.response = (
+                '{' 
+                    f'"title": "{data["collection"]["items"][0]["data"][0]["title"]}",'
+                    f'"href": "{data["collection"]["items"][0]["links"][0]["href"]}",'
+                    f'"description": "{data["collection"]["items"][0]["data"][0]["description"]}"'
+                '}'
+            )
+            
+            return response
     else: 
         if request.method == "GET":
-            return dumps(collection.find())
+            response.response =  dumps(collection.find())
+            response.status_code = 200
+            return response
         elif request.method == "POST":
             try:
-                object = request.get_json()
+                data = request.get_json()
                 inserted_id = collection.insert_one({
-                    "title": object["title"],
-                    "description": object["description"],
-                    "href": object["href"]
+                    "title": data["title"],
+                    "description": data["description"],
+                    "href": data["href"]
                 }).inserted_id
 
-                return { "inserted_id": str(inserted_id) }
+                response.status_code = 200
+                response.response = (
+                    '{' 
+                        f'"inserted_id": {str(inserted_id)}'
+                    '}'
+                )
+        
+                return response
             except KeyError:
-                return 400, "BAD_REQUEST"
+                response.response = "BAD_REQUEST"
+                response.status_code = 400
+                return response
             except:
-                return "Failed to insert object into database."
+                response.response = "Failed to insert object into database."
+                response.status_code = 400
+                return response
         
             
 if __name__ == "__main__":
