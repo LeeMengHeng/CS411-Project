@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import ReactDOM from 'react-dom/client'
 import {BrowserRouter, Routes, Route, useNavigate, createSearchParams, generatePath} from 'react-router-dom';
-import background from '../img/background.png'
 import Search from "./Search";
 
 function Home() {
