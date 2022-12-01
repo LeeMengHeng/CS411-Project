@@ -6,6 +6,13 @@ function Login(){
         // event.preventDefault()
         navigate(`/home`)
     }
+    useEffect(() => {
+        fetch('')
+            .then(res => res.json())
+            .then(data => {
+                setData(data)
+            })
+    })
     return(
         <div style={{textAlign: "center"}}>
             <h2 style={{marginTop: 300, color: "white"}}>Login</h2>
