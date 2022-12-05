@@ -16,7 +16,7 @@ function Login(){
                 setData(data)
             })
     })
-
+    
     return(
         <div style={{textAlign: "center"}}>
             <h2 style={{marginTop: 300, color: "white"}}>Login</h2>
@@ -32,7 +32,7 @@ function Login(){
                 <input
                     type = "text"
                     value = {password}
-                    onChange = {(e) => setPassword(e.target)}
+                    onChange = {(e) => setPassword(e.target.value)}
                     placeholder="password" 
                     style = {{marginBottom: 20, borderRadius: '50px', border: 'solid', borderColor: 'white', height: '30px', width: '300px', textAlign: 'center', background: 'none', color: 'white'}}></input>
             </div>
