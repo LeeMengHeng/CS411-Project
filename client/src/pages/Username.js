@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from "react"
 import {useParams} from 'react-router-dom';
-
+import {BrowserRouter, Routes, Route, useNavigate, createSearchParams, generatePath} from 'react-router-dom';
 function Username(){
   const params = useParams()
-
+  const navigate = useNavigate()
   const [data, setData] = useState("")
-  const {username} = params[0]
-  const {password} = params[1]
+  const {username, password} = params
   const handleClick = (event) => {
     // event.preventDefault()
     navigate(`/home`)
@@ -19,7 +18,7 @@ function Username(){
       })
   },[])
 
-  if (data) {
+  if (data == 'abc') {
     return (
       <div style={{textAlign:"center"}}>
         <div style={{color: "white"}}>
@@ -45,4 +44,4 @@ function Username(){
   // https://images-api.nasa.gov/search?q=${input}
 }
 
-export default Search
+export default Username
