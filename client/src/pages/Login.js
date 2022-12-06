@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route, useNavigate, createSearchParams, generatePath} from 'react-router-dom';
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 
 function Login(){
     const navigate = useNavigate()
@@ -7,15 +7,8 @@ function Login(){
     const [password, setPassword] = useState("")
     const handleClick = (event) => {
         // event.preventDefault()
-        navigate(`/home`)
+        navigate(`/username/${user_name}/${password}`)
     }
-    useEffect(() => {
-        fetch('')
-            .then(res => res.json())
-            .then(data => {
-                setData(data)
-            })
-    })
     
     return(
         <div style={{textAlign: "center"}}>
@@ -36,7 +29,7 @@ function Login(){
                     placeholder="password" 
                     style = {{marginBottom: 20, borderRadius: '50px', border: 'solid', borderColor: 'white', height: '30px', width: '300px', textAlign: 'center', background: 'none', color: 'white'}}></input>
             </div>
-            <button className='user' id="userSubmit" onClick={handleClick} style = {{height: '40px', width: '100px', borderRadius: '50px', border: 'none', fontSize: '17px', fontFamily: 'revert', color: '#02004C'}}>login</button>
+            <button type = 'button' className='user' onClick={handleClick} style={{height: '40px', width: '100px', borderRadius: '50px', border: 'none', fontSize: '17px', fontFamily: 'revert', color: '#02004C'}}>login</button>
         </div>
     )
 }
