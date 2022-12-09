@@ -49,7 +49,7 @@ def search(keyword):
                 return "Failed to insert object into database."
 
 
-@app.route('/uploadurl/', defaults={'theurl': None}, methods=['GET', 'POST'])
+@app.route('/uploadurl/', defaults={'url': None}, methods=['GET', 'POST'])
 @app.route('/uploadurl/<url>', methods=['GET'])
 def uploadurl(url):
     if url != None:
