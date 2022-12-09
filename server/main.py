@@ -6,6 +6,8 @@ from bson.json_util import dumps
 
 
 import requests
+import json
+import time
 
 url = "https://images-api.nasa.gov/search"
 
@@ -45,7 +47,51 @@ def search(keyword):
                 return 400, "BAD_REQUEST"
             except:
                 return "Failed to insert object into database."
-        
-            
+
+
+@app.route('/uploadurl/', defaults={'theurl': None}, methods=['GET', 'POST'])
+@app.route('/uploadurl/<url>', methods=['GET'])
+def uploadurl(url):
+    if url != None:
+            theurl = url.replace("$%$", "/")
+            R = requests.post('http://nova.astrometry.net/api/login',
+                              data={'request-json': json.dumps({"apikey": "uoxccbbqsggxrdmc"})})
+            session_key = json.loads(R.text)["session"]
+            R1 = requests.post('http://nova.astrometry.net/api/url_upload',
+                              data={'request-json': json.dumps({"session": session_key, "url": theurl})})
+            subid = str(json.loads(R1.text)["subid"])
+            while True:
+                R2 = requests.post('http://nova.astrometry.net/api/submissions/' + subid)
+                if (json.loads(R2.text)["job_calibrations"]) != []:
+                    jobid = str(json.loads(R2.text)["jobs"])
+                    break
+                time.sleep(1)
+            jobid = jobid[1:-1]
+            while True:
+                R3 = requests.post('http://nova.astrometry.net/api/jobs/'+jobid)
+                if (json.loads(R3.text)["status"]) == "success":
+                    break
+                time.sleep(1)
+            R4 = requests.post('http://nova.astrometry.net/api/jobs/'+jobid+"/objects_in_field/")
+            objects_found = str(json.loads(R4.text)["objects_in_field"])
+            return objects_found
+    else:
+        return "Empty input"
+
+#The little parser I use for parsing url
+#def urlparser(url):
+    #new = url.replace("/", "$%$")
+    #return new
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
