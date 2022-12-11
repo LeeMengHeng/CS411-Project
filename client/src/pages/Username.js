@@ -19,21 +19,21 @@ function Username(){
   },[])
 
   if (data == 'abc') {
-    return (
-      <div style={{textAlign:"center"}}>
-        <div style={{color: "white"}}>
-          <h1>Hello User</h1>
-          <p>You are being registered automatically!!</p>
-        </div>
-        <button type='button' className='user' onClick={handleClick} style={{height: '40px', width: '100px', borderRadius: '50px', border: 'none', fontSize: '17px', fontFamily: 'revert', color: '#02004C'}}>continue</button>
+  return (
+    <div style={{textAlign:"center"}}>
+      <div style={{color: "white"}}>
+        <h1>Hello User</h1>
+        <p>You are being registered automatically!!</p>
       </div>
-    )
+      <button type='button' className='user' onClick={handleClick} style={{height: '40px', width: '100px', borderRadius: '50px', border: 'none', fontSize: '17px', fontFamily: 'revert', color: '#02004C'}}>continue</button>
+    </div>
+  )
   } 
   else {
     return (
         <div style={{textAlign:"center"}}>
         <div style={{color: "white"}}>
-          <h1>Hello User</h1>
+          <h1>Hello Use1r</h1>
         </div>
         <button type='button' className='user' onClick={handleClick} style={{height: '40px', width: '100px', borderRadius: '50px', border: 'none', fontSize: '17px', fontFamily: 'revert', color: '#02004C'}}>continue</button>
       </div>

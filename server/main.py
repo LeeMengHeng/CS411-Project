@@ -72,13 +72,12 @@ def username(username, password):
     response = make_response()
     response.access_control_allow_origin = "http://localhost:3000"
     response.content_type = "application/json"
-    result = dumps(collection.find(username))
-    if result == None:
+    result = dumps(collection.find({username}))
+    if result == []:
         inserted_id = collection.insert_one({
             'username': username,
             'password': password
         }).inserted_id
-
         response.status_code = 200
         response.response = (
             '{'
