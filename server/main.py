@@ -73,7 +73,7 @@ def uploadurl(url):
                     break
                 time.sleep(1)
             R4 = requests.post('http://nova.astrometry.net/api/jobs/'+jobid+"/objects_in_field/")
-            objects_found = str(json.loads(R4.text)["objects_in_field"])
+            objects_found = json.dumps(json.loads(R4.text)["objects_in_field"])
             return objects_found
     else:
         return "Empty input"
