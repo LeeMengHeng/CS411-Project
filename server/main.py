@@ -3,6 +3,8 @@ from bson.json_util import dumps
 import requests
 import os
 import pymongo
+import json
+import time
 
 
 url = "https://images-api.nasa.gov/search"
