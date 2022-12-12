@@ -33,5 +33,8 @@
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
 
-	"extensions": ["ms-python.python"]
+	"extensions": [
+		"ms-python.python",
+		"rangav.vscode-thunder-client"
+	]
 }
